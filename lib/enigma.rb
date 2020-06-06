@@ -8,6 +8,7 @@ class Enigma
     @key = key
     @date = date
     @char_array = ("a".."z").to_a << " "
+    @shift = {}
   end
 
   def self.format_date
@@ -45,7 +46,7 @@ class Enigma
   end
 
   def create_shift
-    shift = key_hash.merge(offset_hash) do |alpha, key_value, offset_value|
+    @shift = key_hash.merge(offset_hash) do |symbol, key_value, offset_value|
       key_value.to_i + offset_value.to_i
     end
   end
