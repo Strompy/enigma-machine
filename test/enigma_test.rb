@@ -30,8 +30,8 @@ class EnigmaTest < Minitest::Test
   def test_it_can_create_key
     file = File.open('./message.txt', 'r')
     enigma = Enigma.new(file)
-    expected_key = 01234
-    assert_equal 5, enigma.create_key.count
+    expected_key = "01234"
+    assert_equal 5, enigma.create_key.length
     enigma.stubs(:rand).returns(1234)
     assert_equal expected_key, enigma.create_key
   end
