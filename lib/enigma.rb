@@ -18,4 +18,20 @@ class Enigma
   def create_key
     key = rand(100_000).to_s.rjust(5, '0')
   end
+
+  def key_hash
+    key = create_key
+    key_hash = {:A => key[0..1],
+    :B => key[1..2],
+    :C => key[2..3],
+    :D => key[3..4]
+    }
+    key_hash
+  end
+
+  def create_offset
+    square = (date.to_i)**2
+    offset = square.to_s
+    offset[-4..-1]
+  end
 end
