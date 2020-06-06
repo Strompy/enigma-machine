@@ -48,4 +48,12 @@ class EnigmaTest < Minitest::Test
 
     assert_equal expected, enigma.key_hash
   end
+
+  def test_it_can_make_offset
+    file = File.open('./message.txt', 'r')
+    enigma = Enigma.new(file)
+    Date.stubs(:today).returns(Date.new(2020, 06, 06))
+    expected = "0400"
+    assert_equal expected, enigma.create_offset
+  end
 end
