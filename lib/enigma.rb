@@ -1,11 +1,11 @@
 require 'Date'
 
 class Enigma
-  attr_reader :file, :shift, :date, :char_array
+  attr_reader :file, :key, :date, :char_array
 
-  def initialize(file, shift = nil, date = Enigma.format_date)
+  def initialize(file, key = Enigma.create_key, date = Enigma.format_date)
     @file = file
-    @shift = shift
+    @key = key
     @date = date
     @char_array = ("a".."z").to_a << " "
   end
@@ -15,12 +15,11 @@ class Enigma
     test.strftime('%d%m%Y')
   end
 
-  def create_key
-    key = rand(100_000).to_s.rjust(5, '0')
+  def self.create_key
+    rand(100_000).to_s.rjust(5, '0')
   end
 
   def key_hash
-    key = create_key
     key_hash = {:A => key[0..1],
     :B => key[1..2],
     :C => key[2..3],
@@ -34,4 +33,6 @@ class Enigma
     offset = square.to_s
     offset[-4..-1]
   end
+
+  
 end
