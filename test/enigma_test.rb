@@ -26,4 +26,13 @@ class EnigmaTest < Minitest::Test
     Date.stubs(:today).returns(Date.new(2020, 06, 06))
     assert_equal '06062020', enigma.date
   end
+
+  def test_it_can_create_key
+    file = File.open('./message.txt', 'r')
+    enigma = Enigma.new(file)
+    expected_key = 01234
+    assert_equal 5, enigma.create_key.count
+    enigma.stubs(:rand).returns(1234)
+    assert_equal expected_key, enigma.create_key
+  end
 end
