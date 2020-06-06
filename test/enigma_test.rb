@@ -22,8 +22,8 @@ class EnigmaTest < Minitest::Test
 
   def test_it_can_format_date
     file = File.open('./message.txt', 'r')
-    enigma = Enigma.new(file, 01234)
     Date.stubs(:today).returns(Date.new(2020, 06, 06))
+    enigma = Enigma.new(file, 01234)
     assert_equal '06062020', enigma.date
   end
 
@@ -50,8 +50,8 @@ class EnigmaTest < Minitest::Test
 
   def test_it_can_make_offset
     file = File.open('./message.txt', 'r')
-    enigma = Enigma.new(file)
     Date.stubs(:today).returns(Date.new(2020, 06, 06))
+    enigma = Enigma.new(file)
     expected = "0400"
     assert_equal expected, enigma.create_offset
   end
@@ -59,8 +59,8 @@ class EnigmaTest < Minitest::Test
 
   def test_it_can_make_offset_hash
     file = File.open('./message.txt', 'r')
-    enigma = Enigma.new(file)
     Date.stubs(:today).returns(Date.new(2020, 06, 06))
+    enigma = Enigma.new(file)
     expected = {:A => "0",
     :B => "4",
     :C => "0",
@@ -68,5 +68,18 @@ class EnigmaTest < Minitest::Test
     }
 
     assert_equal expected, enigma.offset_hash
+  end
+
+  def test_it_can_make_shift_hash
+    file = File.open('./message.txt', 'r')
+    Date.stubs(:today).returns(Date.new(2020, 06, 06))
+    Enigma.stubs(:rand).returns(1234)
+    enigma = Enigma.new(file)
+    expected = {:A => 1,
+    :B => 16,
+    :C => 23,
+    :D => 34
+    }
+    assert_equal expected, enigma.create_shift
   end
 end
