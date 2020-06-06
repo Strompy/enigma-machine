@@ -1,10 +1,10 @@
 require 'Date'
 
 class Enigma
-  attr_reader :file, :key, :date, :char_array
+  attr_reader :message, :key, :date, :char_array
 
-  def initialize(file, key = Enigma.create_key, date = Enigma.format_date)
-    @file = file
+  def initialize(message, key = Enigma.create_key, date = Enigma.format_date)
+    @message = message
     @key = key
     @date = date
     @char_array = ("a".."z").to_a << " "
