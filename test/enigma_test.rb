@@ -1,3 +1,4 @@
+require './test/test_helper'
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/enigma'
@@ -70,7 +71,7 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, enigma.offset_hash
   end
 
-  def test_it_can_make_shift_hash
+  def test_it_can_make_shift_hash_without_key_and_date
     file = File.open('./message.txt', 'r')
     Date.stubs(:today).returns(Date.new(2020, 06, 06))
     Enigma.stubs(:rand).returns(1234)
@@ -82,4 +83,16 @@ class EnigmaTest < Minitest::Test
     }
     assert_equal expected, enigma.create_shift
   end
+
+  def test_it_can_make_shift_hash_with_key_and_date
+    file = File.open('./message.txt', 'r')
+    enigma = Enigma.new(file, "02715", "040895")
+    expected = {:A => 3,
+    :B => 27,
+    :C => 73,
+    :D => 20
+    }
+    assert_equal expected, enigma.create_shift
+  end
+
 end
