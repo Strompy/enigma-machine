@@ -43,4 +43,10 @@ class Enigma
     }
     offset_hash
   end
+
+  def create_shift
+    shift = key_hash.merge(offset_hash) do |alpha, key_value, offset_value|
+      key_value.to_i + offset_value.to_i
+    end
+  end
 end
