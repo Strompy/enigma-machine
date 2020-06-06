@@ -17,6 +17,7 @@ class EnigmaTest < Minitest::Test
     assert_equal file, enigma.file
     assert_equal 01234, enigma.shift
     assert_equal Date.today, enigma.date
+    assert_equal 27, enigma.char_array.count
   end
 
   def test_it_can_format_date
