@@ -35,4 +35,17 @@ class EnigmaTest < Minitest::Test
     enigma.stubs(:rand).returns(1234)
     assert_equal expected_key, enigma.create_key
   end
+
+  def test_it_can_make_key_hash
+    file = File.open('./message.txt', 'r')
+    enigma = Enigma.new(file)
+    enigma.stubs(:rand).returns(1234)
+    expected = {:A => "01",
+    :B => "12",
+    :C => "23",
+    :D => "34"
+    }
+
+    assert_equal expected, enigma.key_hash
+  end
 end
