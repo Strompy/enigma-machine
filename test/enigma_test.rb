@@ -15,7 +15,7 @@ class EnigmaTest < Minitest::Test
     file = File.open('./message.txt', 'r')
     enigma = Enigma.new(file, 01234, Date.today)
     assert_equal file, enigma.file
-    assert_equal 01234, enigma.shift
+    assert_equal 01234, enigma.key
     assert_equal Date.today, enigma.date
     assert_equal 27, enigma.char_array.count
   end
@@ -29,17 +29,16 @@ class EnigmaTest < Minitest::Test
 
   def test_it_can_create_key
     file = File.open('./message.txt', 'r')
+    Enigma.stubs(:rand).returns(1234)
     enigma = Enigma.new(file)
     expected_key = "01234"
-    assert_equal 5, enigma.create_key.length
-    enigma.stubs(:rand).returns(1234)
-    assert_equal expected_key, enigma.create_key
+    assert_equal 5, enigma.key.length
+    assert_equal expected_key, enigma.key
   end
 
   def test_it_can_make_key_hash
     file = File.open('./message.txt', 'r')
-    enigma = Enigma.new(file)
-    enigma.stubs(:rand).returns(1234)
+    enigma = Enigma.new(file, "01234")
     expected = {:A => "01",
     :B => "12",
     :C => "23",
@@ -55,5 +54,19 @@ class EnigmaTest < Minitest::Test
     Date.stubs(:today).returns(Date.new(2020, 06, 06))
     expected = "0400"
     assert_equal expected, enigma.create_offset
+  end
+
+
+  def test_it_can_make_offset_hash
+    file = File.open('./message.txt', 'r')
+    enigma = Enigma.new(file)
+    Date.stubs(:today).returns(Date.new(2020, 06, 06))
+    expected = {:A => "0",
+    :B => "4",
+    :C => "0",
+    :D => "0"
+    }
+
+    assert_equal expected, enigma.offset_hash
   end
 end
