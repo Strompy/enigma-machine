@@ -1,7 +1,7 @@
 require './lib/enigma.rb'
 
 reader = File.open(ARGV[0], 'r')
-incoming_text = handle.read
+incoming_text = reader.read
 reader.close
 
 encryptor = Enigma.new(incoming_text)
