@@ -18,6 +18,7 @@ class ShiftGeneratorTest < Minitest::Test
     ShiftGenerator.stubs(:rand).returns(1234)
     shift = ShiftGenerator.new
     shift.stubs(:rand).returns(1234)
+    shift.create_key
     expected = {:A => 1,
     :B => 16,
     :C => 23,
