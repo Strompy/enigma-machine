@@ -49,7 +49,7 @@ class EnigmaTest < Minitest::Test
   #   }
   #
   #   assert_equal expected, enigma.offset_hash
-  end
+  # end
 
   def test_it_can_make_shift_hash_without_key_and_date
     Date.stubs(:today).returns(Date.new(2020, 06, 06))
