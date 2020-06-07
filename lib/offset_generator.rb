@@ -15,4 +15,14 @@ attr_reader :date
     offset[-4..-1]
   end
 
+  def offset_hash
+    offset = create_offset
+    offset_hash = {:A => offset[0],
+    :B => offset[1],
+    :C => offset[2],
+    :D => offset[3]
+    }
+    offset_hash
+  end
+
 end
