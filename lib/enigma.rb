@@ -1,13 +1,13 @@
 require 'Date'
 
-class Enigma
-  attr_reader :message, :key, :date, :char_array
+class Enigma < ShiftGenerator
+  attr_reader :char_array, :message, :key, :date, :shift
 
-  def initialize(message, key = Enigma.create_key, date = Enigma.format_date)
+  def initialize(message, key = KeyGenerator.new.create_key, date = OffsetGenerator.new.date)
+    @char_array = ("a".."z").to_a << " "
     @message = message
     @key = key
     @date = date
-    @char_array = ("a".."z").to_a << " "
     @shift = {}
   end
 

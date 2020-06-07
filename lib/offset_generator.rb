@@ -1,5 +1,7 @@
 require 'Date'
-class OffsetGenerator
+require './lib/key_generator'
+
+class OffsetGenerator < KeyGenerator
 attr_reader :date
   def initialize
     @date = Date.today.strftime('%d%m%Y')
