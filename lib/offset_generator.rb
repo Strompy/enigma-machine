@@ -12,6 +12,7 @@ attr_reader :date
   end
 
   def create_offset
+    generate_date
     square = (date.to_i)**2
     offset = square.to_s
     offset[-4..-1]
