@@ -18,13 +18,14 @@ class EnigmaTest < Minitest::Test
     assert_instance_of Enigma , enigma
   end
 
-  # def test_it_has_attributes
-  #   enigma = Enigma.new(@message, 01234, Date.today)
-  #   assert_equal "Hello World", enigma.message
-  #   assert_equal 01234, enigma.key
-  #   assert_equal Date.today, enigma.date
-  #   assert_equal 27, enigma.char_array.count
-  # end
+  def test_it_has_attributes
+    Date.stubs(:today).returns(Date.new(2020, 06, 06))
+    enigma = Enigma.new(@message, 01234, OffsetGenerator.new.date)
+    assert_equal "Hello World", enigma.message
+    assert_equal 01234, enigma.key
+    assert_equal '06062020', enigma.date
+    assert_equal 27, enigma.char_array.count
+  end
 
   # def test_it_can_format_date
   #   Date.stubs(:today).returns(Date.new(2020, 06, 06))
