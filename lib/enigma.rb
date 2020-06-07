@@ -11,6 +11,7 @@ class Enigma < ShiftGenerator
     @key = key
     @date = date
     @shifts = []
+    @output = {}
   end
 
   def encrypt
@@ -28,7 +29,7 @@ class Enigma < ShiftGenerator
         encrypt_character(3, character)
       end
     end
-    encrypted.join
+    {encryption: encrypted.join, key: @key, date: @date}
   end
 
   def encrypt_character(hash, character)
@@ -55,7 +56,7 @@ class Enigma < ShiftGenerator
         encrypt_character(3, character)
       end
     end
-    decrypted.join
+    {decryption: decrypted.join, key: @key, date: @date}
   end
 
 end
