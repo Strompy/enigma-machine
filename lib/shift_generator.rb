@@ -16,7 +16,7 @@ class ShiftGenerator < OffsetGenerator
     end
   end
 
-  def create_shift_hashes
+  def create_shifts_array
     @shift.map do |symbol, shift|
       @shifts << @char_array.zip(@char_array.rotate(shift)).to_h
     end
