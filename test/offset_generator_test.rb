@@ -26,14 +26,14 @@ class OffsetGeneratorTest < Minitest::Test
 
   def test_it_can_make_offset_hash
     Date.stubs(:today).returns(Date.new(2020, 06, 06))
-    enigma = Enigma.new(@message)
+    offset = OffsetGenerator.new
     expected = {:A => "0",
     :B => "4",
     :C => "0",
     :D => "0"
     }
 
-    assert_equal expected, enigma.offset_hash
+    assert_equal expected, offset.offset_hash
   end
 
 end
