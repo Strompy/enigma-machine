@@ -25,30 +25,30 @@ class EnigmaTest < Minitest::Test
     assert_equal 27, enigma.char_array.count
   end
 
-  def test_it_can_format_date
-    Date.stubs(:today).returns(Date.new(2020, 06, 06))
-    enigma = Enigma.new(@message, 01234)
-    assert_equal '06062020', enigma.date
-  end
+  # def test_it_can_format_date
+  #   Date.stubs(:today).returns(Date.new(2020, 06, 06))
+  #   enigma = Enigma.new(@message, 01234)
+  #   assert_equal '06062020', enigma.date
+  # end
 
-  def test_it_can_make_offset
-    Date.stubs(:today).returns(Date.new(2020, 06, 06))
-    enigma = Enigma.new(@message)
-    expected = "0400"
-    assert_equal expected, enigma.create_offset
-  end
+  # def test_it_can_make_offset
+  #   Date.stubs(:today).returns(Date.new(2020, 06, 06))
+  #   enigma = Enigma.new(@message)
+  #   expected = "0400"
+  #   assert_equal expected, enigma.create_offset
+  # end
 
 
-  def test_it_can_make_offset_hash
-    Date.stubs(:today).returns(Date.new(2020, 06, 06))
-    enigma = Enigma.new(@message)
-    expected = {:A => "0",
-    :B => "4",
-    :C => "0",
-    :D => "0"
-    }
-
-    assert_equal expected, enigma.offset_hash
+  # def test_it_can_make_offset_hash
+  #   Date.stubs(:today).returns(Date.new(2020, 06, 06))
+  #   enigma = Enigma.new(@message)
+  #   expected = {:A => "0",
+  #   :B => "4",
+  #   :C => "0",
+  #   :D => "0"
+  #   }
+  #
+  #   assert_equal expected, enigma.offset_hash
   end
 
   def test_it_can_make_shift_hash_without_key_and_date
