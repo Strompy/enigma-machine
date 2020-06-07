@@ -9,13 +9,11 @@ require 'mocha/minitest'
 class ShiftGeneratorTest < Minitest::Test
 
   def test_it_exists
-    skip
     shift = ShiftGenerator.new
     assert_instance_of ShiftGenerator, shift
   end
 
   def test_it_can_make_shift_hash
-    skip
     Date.stubs(:today).returns(Date.new(2020, 06, 06))
     ShiftGenerator.stubs(:rand).returns(1234)
     shift = ShiftGenerator.new
@@ -36,7 +34,7 @@ class ShiftGeneratorTest < Minitest::Test
     shift.stubs(:rand).returns(1234)
     shift.create_key
     shift.create_shift
-    shift.create_shift_hashes
+    shift.create_shifts_array
     assert_equal 4, shift.shifts.size
   end
 end
