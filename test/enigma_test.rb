@@ -30,8 +30,8 @@ class EnigmaTest < Minitest::Test
   def test_it_can_encrypt_with_key_and_date
     Date.stubs(:today).returns(Date.new(2020, 06, 06))
     enigma = Enigma.new(@message, '01234', OffsetGenerator.new.date)
-    enigma.create_shift
-    enigma.create_shifts_array
+    # enigma.create_shift
+    # enigma.create_shifts_array
     expected = 'iuhsppsvsa !'
     assert_equal expected, enigma.encrypt
   end
@@ -49,7 +49,16 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_can_encrypt_without_key_and_date
-    skip
+    Date.stubs(:today).returns(Date.new(2020, 06, 06))
+    # @key = KeyGenerator.new
+    # @key.stubs(:rand).returns(1234)
+    # @key.create_key
+    # KeyGenerator.stubs(:rand).returns('0123')
+    # @key.stubs(:rand).returns(1234)
+    # @key.stubs(:create_key).returns('01234')
+    enigma = Enigma.new(@message)
+    # expected = 'iuhsppsvsa !'
+    refute_equal @message, enigma.encrypt
   end
 
   def test_it_can_decrypt_with_key_and_date
