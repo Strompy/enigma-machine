@@ -18,11 +18,23 @@ class ShiftGeneratorTest < Minitest::Test
     ShiftGenerator.stubs(:rand).returns(1234)
     shift = ShiftGenerator.new
     shift.stubs(:rand).returns(1234)
+    shift.create_key
     expected = {:A => 1,
     :B => 16,
     :C => 23,
     :D => 34
     }
     assert_equal expected, shift.create_shift
+  end
+
+  def test_it_can_make_shift_hashes
+    Date.stubs(:today).returns(Date.new(2020, 06, 06))
+    ShiftGenerator.stubs(:rand).returns(1234)
+    shift = ShiftGenerator.new
+    shift.stubs(:rand).returns(1234)
+    shift.create_key
+    shift.create_shift
+    shift.create_shifts_array
+    assert_equal 4, shift.shifts.size
   end
 end
