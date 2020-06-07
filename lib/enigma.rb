@@ -14,7 +14,6 @@ class Enigma < ShiftGenerator
   end
 
   def encrypt
-    create_shift
     create_shifts_array
     message_array = @message.split("")
     encrypted = message_array.map.with_index do |character, index|
