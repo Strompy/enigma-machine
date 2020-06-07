@@ -17,4 +17,25 @@ class KeyGeneratorTest < Minitest::Test
     assert_equal expected, key_gen.key
     assert_equal expected, key_gen.key_hash
   end
+
+  def test_it_can_create_key
+    KeyGenerator.stubs(:rand).returns(1234)
+    enigma = KeyGenerator.new
+    expected_key = "01234"
+    assert_equal 5, enigma.key.length
+    assert_equal expected_key, enigma.key
+  end
+
+  def test_it_can_make_key_hash
+    KeyGenerator.stubs(:rand).returns(1234)
+    enigma = KeyGenerator.new
+    expected = {:A => "01",
+    :B => "12",
+    :C => "23",
+    :D => "34"
+    }
+
+    assert_equal expected, enigma.key_hash
+  end
+
 end
