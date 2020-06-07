@@ -14,6 +14,7 @@ class Enigma < ShiftGenerator
   end
 
   def encrypt
+    create_shift
     create_shifts_array
     message_array = @message.split("")
     encrypted = message_array.map.with_index do |character, index|
@@ -38,5 +39,23 @@ class Enigma < ShiftGenerator
     end
   end
 
+  def decrypt
+    create_shift
+    @shift.each { |key, value| @shift[key] = -value }
+    create_shifts_array
+    message_array = @message.split("")
+    decrypted = message_array.map.with_index do |character, index|
+      if index % 4 == 0
+        encrypt_character(0, character)
+      elsif index % 4 == 1
+        encrypt_character(1, character)
+      elsif index % 4 == 2
+        encrypt_character(2, character)
+      elsif index % 4 == 3
+        encrypt_character(3, character)
+      end
+    end
+    decrypted.join
+  end
 
 end

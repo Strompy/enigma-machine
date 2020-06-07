@@ -50,71 +50,24 @@ class EnigmaTest < Minitest::Test
 
   def test_it_can_encrypt_without_key_and_date
     Date.stubs(:today).returns(Date.new(2020, 06, 06))
-    # @key = KeyGenerator.new
-    # @key.stubs(:rand).returns(1234)
-    # @key.create_key
-    # KeyGenerator.stubs(:rand).returns('0123')
-    # @key.stubs(:rand).returns(1234)
-    # @key.stubs(:create_key).returns('01234')
     enigma = Enigma.new(@message)
-    # expected = 'iuhsppsvsa !'
     refute_equal @message, enigma.encrypt
   end
 
   def test_it_can_decrypt_with_key_and_date
-    skip
+    message = 'iuhsppsvsa !'
+    Date.stubs(:today).returns(Date.new(2020, 06, 06))
+    enigma = Enigma.new(message, '01234', OffsetGenerator.new.date)
+    expected = 'hello world!'
+    assert_equal expected, enigma.decrypt
   end
 
-  def test_it_can_decrypt_without_key_and_date
-    skip
+  def test_it_can_decrypt_without_date
+    message = 'iuhsppsvsa !'
+    Date.stubs(:today).returns(Date.new(2020, 06, 06))
+    enigma = Enigma.new(message, '01234')
+    expected = 'hello world!'
+    assert_equal expected, enigma.decrypt
   end
-
-  # def test_it_can_format_date
-  #   Date.stubs(:today).returns(Date.new(2020, 06, 06))
-  #   enigma = Enigma.new(@message, 01234)
-  #   assert_equal '06062020', enigma.date
-  # end
-
-  # def test_it_can_make_offset
-  #   Date.stubs(:today).returns(Date.new(2020, 06, 06))
-  #   enigma = Enigma.new(@message)
-  #   expected = "0400"
-  #   assert_equal expected, enigma.create_offset
-  # end
-
-
-  # def test_it_can_make_offset_hash
-  #   Date.stubs(:today).returns(Date.new(2020, 06, 06))
-  #   enigma = Enigma.new(@message)
-  #   expected = {:A => "0",
-  #   :B => "4",
-  #   :C => "0",
-  #   :D => "0"
-  #   }
-  #
-  #   assert_equal expected, enigma.offset_hash
-  # end
-
-  # def test_it_can_make_shift_hash_without_key_and_date
-  #   Date.stubs(:today).returns(Date.new(2020, 06, 06))
-  #   Enigma.stubs(:rand).returns(1234)
-  #   enigma = Enigma.new(@message)
-  #   expected = {:A => 1,
-  #   :B => 16,
-  #   :C => 23,
-  #   :D => 34
-  #   }
-  #   assert_equal expected, enigma.create_shift
-  # end
-
-  # def test_it_can_make_shift_hash_with_key_and_date
-  #   enigma = Enigma.new(@message, "02715", "040895")
-  #   expected = {:A => 3,
-  #   :B => 27,
-  #   :C => 73,
-  #   :D => 20
-  #   }
-  #   assert_equal expected, enigma.create_shift
-  # end
 
 end
