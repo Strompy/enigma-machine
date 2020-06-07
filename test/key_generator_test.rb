@@ -10,4 +10,11 @@ class KeyGeneratorTest < Minitest::Test
     key_gen = KeyGenerator.new
     assert_instance_of KeyGenerator, key_gen
   end
+
+  def test_it_has_attributes
+    key_gen = KeyGenerator.new
+    expected = {}
+    assert_equal expected, key_gen.key
+    assert_equal expected, key_gen.key_hash
+  end
 end
