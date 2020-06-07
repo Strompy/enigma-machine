@@ -62,7 +62,11 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_can_decrypt_with_key_and_date
-    skip
+    message = 'iuhsppsvsa !'
+    Date.stubs(:today).returns(Date.new(2020, 06, 06))
+    enigma = Enigma.new(message, '01234', OffsetGenerator.new.date)
+    expected = 'hello world!'
+    assert_equal expected, enigma.decrypt
   end
 
   def test_it_can_decrypt_without_key_and_date
