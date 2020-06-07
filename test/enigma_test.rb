@@ -4,6 +4,7 @@ require 'minitest/pride'
 require './lib/enigma'
 require './lib/offset_generator'
 require './lib/key_generator'
+require './lib/shift_generator'
 require 'mocha/minitest'
 
 class EnigmaTest < Minitest::Test
