@@ -2,6 +2,8 @@ require './test/test_helper'
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/enigma'
+require './lib/date_generator'
+require './lib/key_generator'
 require 'mocha/minitest'
 
 class EnigmaTest < Minitest::Test
