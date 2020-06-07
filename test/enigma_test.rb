@@ -29,25 +29,6 @@ class EnigmaTest < Minitest::Test
     assert_equal '06062020', enigma.date
   end
 
-  def test_it_can_create_key
-    Enigma.stubs(:rand).returns(1234)
-    enigma = Enigma.new(@message)
-    expected_key = "01234"
-    assert_equal 5, enigma.key.length
-    assert_equal expected_key, enigma.key
-  end
-
-  def test_it_can_make_key_hash
-    enigma = Enigma.new(@message, "01234")
-    expected = {:A => "01",
-    :B => "12",
-    :C => "23",
-    :D => "34"
-    }
-
-    assert_equal expected, enigma.key_hash
-  end
-
   def test_it_can_make_offset
     Date.stubs(:today).returns(Date.new(2020, 06, 06))
     enigma = Enigma.new(@message)
