@@ -6,7 +6,7 @@ Use command line interface to run the program
 
 Encrypt: $ ruby ./lib/encrypt.rb message.txt encrypted.txt
 
-Decrypt: ruby ./lib/decrypt.rb encrypted.txt decrypted.txt 'key' 'date'
+Decrypt: $ ruby ./lib/decrypt.rb encrypted.txt decrypted.txt 'key' 'date'
 
 
 ### Self Evaluation
