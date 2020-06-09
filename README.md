@@ -5,6 +5,7 @@ Built to emulate the Enigma encryption scheme, using a random key and the date t
 Use command line interface to run the program
 
 Encrypt: $ ruby ./lib/encrypt.rb message.txt encrypted.txt
+
 Decrypt: ruby ./lib/decrypt.rb encrypted.txt decrypted.txt 'key' 'date'
 
 
