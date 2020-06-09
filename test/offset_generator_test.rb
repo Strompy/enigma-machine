@@ -14,7 +14,7 @@ class OffsetGeneratorTest < Minitest::Test
   def test_it_can_format_date
     Date.stubs(:today).returns(Date.new(2020, 06, 06))
     offset = OffsetGenerator.new
-    assert_equal '06062020', offset.generate_date
+    assert_equal '06062020', offset.date
   end
 
   def test_it_can_make_offset

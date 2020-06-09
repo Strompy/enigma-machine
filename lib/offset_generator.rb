@@ -7,12 +7,7 @@ attr_reader :date
     @date = Date.today.strftime('%d%m%Y')
   end
 
-  def generate_date
-    Date.today.strftime('%d%m%Y')
-  end
-
   def create_offset
-    # generate_date
     square = (date.to_i)**2
     offset = square.to_s
     offset[-4..-1]
